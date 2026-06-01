@@ -123,7 +123,7 @@ const Hero = () => {
                     ease: "easeInOut"
                   }}
                   whileHover={{ scale: 1.05, boxShadow: 'var(--shadow-hover)' }}
-                  className="glass-card"
+                  className="glass-card hero-float-card"
                 >
                   <div style={styles.floatCardIcon}>
                     {stat.icon}
@@ -328,10 +328,10 @@ if (typeof document !== 'undefined') {
     
     @media (max-width: 1200px) {
       /* Reposition or scale float cards slightly to fit inside bounds */
-      div[style*="top: 15%"] { left: -2% !important; }
-      div[style*="bottom: 20%"] { left: -4% !important; }
-      div[style*="top: 30%"] { right: -2% !important; }
-      div[style*="bottom: 10%"] { right: -2% !important; }
+      .hero-float-card[style*="top: 15%"] { left: -2% !important; }
+      .hero-float-card[style*="bottom: 20%"] { left: -4% !important; }
+      .hero-float-card[style*="top: 30%"] { right: -2% !important; }
+      .hero-float-card[style*="bottom: 10%"] { right: -2% !important; }
     }
 
     @media (max-width: 1024px) {
@@ -356,7 +356,7 @@ if (typeof document !== 'undefined') {
         text-align: center;
       }
       /* Hide floating cards on mobile to avoid overlap */
-      div[style*="position: absolute"] {
+      .hero-float-card {
         display: none !important;
       }
       /* But keep the base image wrapper */

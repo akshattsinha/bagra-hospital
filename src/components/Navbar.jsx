@@ -51,7 +51,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation Links */}
-        <div style={styles.desktopNav}>
+        <div className="desktop-nav" style={styles.desktopNav}>
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} style={styles.navLink}>
               {link.name}
@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
 
         {/* CTA Button */}
-        <div style={styles.ctaWrapper}>
+        <div className="cta-wrapper" style={styles.ctaWrapper}>
           <a href="#appointment" className="btn btn-primary" style={styles.ctaBtn}>
             <Calendar size={16} />
             <span>Book Appointment</span>
@@ -69,6 +69,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Toggle */}
         <button 
+          className="mobile-toggle"
           style={styles.mobileToggle} 
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
@@ -79,7 +80,7 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div style={styles.mobileDrawer}>
+        <div className="mobile-drawer" style={styles.mobileDrawer}>
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -156,9 +157,6 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '1.75rem',
-    '@media (max-width: 1024px)': {
-      display: 'none',
-    },
   },
   navLink: {
     fontSize: '0.95rem',
@@ -170,9 +168,6 @@ const styles = {
   },
   ctaWrapper: {
     display: 'block',
-    '@media (max-width: 1024px)': {
-      display: 'none',
-    },
   },
   ctaBtn: {
     fontSize: '0.85rem',
@@ -198,9 +193,11 @@ const styles = {
     top: '100%',
     left: 0,
     width: '100%',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
     padding: '1.5rem',
-    borderBottom: '1px solid var(--border)',
+    borderBottom: '1px solid rgba(15, 23, 42, 0.08)',
     boxShadow: 'var(--glass-shadow)',
     gap: '1rem',
     zIndex: 999,
@@ -223,22 +220,26 @@ if (typeof document !== 'undefined') {
   const style = document.createElement('style');
   style.textContent = `
     @media (max-width: 1024px) {
-      nav div:nth-child(2) {
+      .desktop-nav {
         display: none !important;
       }
-      nav div:nth-child(3) {
+      .cta-wrapper {
         display: none !important;
       }
-      nav button {
+      .mobile-toggle {
         display: block !important;
       }
     }
     
+    .mobile-toggle:hover {
+      background-color: var(--bg-secondary) !important;
+    }
+    
     /* Navbar Hover Effect underliners */
-    nav div a {
+    .desktop-nav a {
       position: relative;
     }
-    nav div a::after {
+    .desktop-nav a::after {
       content: '';
       position: absolute;
       width: 0;
@@ -248,10 +249,10 @@ if (typeof document !== 'undefined') {
       background-color: var(--accent);
       transition: width 0.3s ease;
     }
-    nav div a:hover::after {
+    .desktop-nav a:hover::after {
       width: 100%;
     }
-    nav div a:hover {
+    .desktop-nav a:hover {
       color: var(--accent-dark) !important;
     }
   `;
